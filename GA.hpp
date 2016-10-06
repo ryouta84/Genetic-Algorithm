@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <array>
 #include <vector>
@@ -16,6 +18,7 @@ private:
     size_t  mMaxWeight = 300; //最大重量
     void    init(size_t size, size_t length); //染色体の数,遺伝子の長さ
     void    initGoods();        //荷物の価値、重量の初期化
+    int     rndRange(int a, int b);     //a以上b未満の乱数
 
     void mating();
         size_t rouletteSelection(int r);
@@ -26,8 +29,7 @@ private:
     void    childrenSelection();
         void    mutation();                 //突然変異
             void    flipBit(size_t No, size_t pos);
-    const double  mRate;
-    int     rndRange(int a, int b);     //a以上b未満の乱数
+            const double  mRate;
 
     enum goodsAttribute{
         weight,

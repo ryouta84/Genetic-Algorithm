@@ -1,14 +1,18 @@
-OBJS	= main.o GA.o
-PROGRAM = main
+CXX 	 = g++
+CXXFLAGS = -std=c++14 -Wall
+OBJS	 = main.o GA.o
+PROGRAM  = main
 
 all:			$(PROGRAM)
 
 $(PROGRAM):		$(OBJS)
-				g++  $(OBJS) -o $(PROGRAM)
+				$(CXX) $(OBJS) -o $(PROGRAM)
 
 main.o:			main.cpp
-				g++ -std=c++14 -c main.cpp
+				$(CXX) $(CXXFLAGS) -c $^
 
+GA.o: 			GA.cpp GA.hpp
+				$(CXX) $(CXXFLAGS) -c GA.cpp
 
-GA.o: 			GA.cpp
-				g++ -std=c++14 -c GA.cpp
+clean:
+				$(RM) $(OBJS)

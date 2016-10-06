@@ -1,4 +1,4 @@
-#include "GA.h"
+#include "GA.hpp"
 
 GA::GA(size_t size, size_t length, double r)
  : mSize(size), mChromoLength(length), mRate()
@@ -6,6 +6,7 @@ GA::GA(size_t size, size_t length, double r)
     init(size, length);
     initGoods();
 
+    //遺伝的操作
     for(int i=0; i<100; ++i){
         mating();
         mutation();
@@ -14,6 +15,7 @@ GA::GA(size_t size, size_t length, double r)
             cout << "price value == "<< fitness(i, mPGeneration) << endl;
         }
     }
+
     std::cout << "------------result--------------" << std::endl;
     int max=0;
     for(int i = 0; i<mSize; ++i){
@@ -162,21 +164,13 @@ void GA::init(size_t size, size_t length)
 
 void GA::initGoods()
 {
-    mGoods = {
-        {65,27},
-        {39,82},
-        {69,85},
-        {72,71},
-        {87,91},
-        {90,32},
-        {43,54},
-        {52,89},
-        {10,9},
-        {24,30},
-        {32,45},
-        {53,68},
-        {91,80},
-        {42,63},
-        {60,45},
-    };
+    std::cout << "weight  price" << std::endl;
+    array<int,2> tmp = { {0,0} };
+    mGoods.resize(mChromoLength);
+    for(int i=0; i<mChromoLength; ++i){
+        tmp.at(weight) = rndRange(0,80);
+        tmp.at(price)  = rndRange(0,80);
+        mGoods.at(i) = tmp;
+        cout << mGoods.at(i).at(weight) << "   " << mGoods.at(i).at(price) << endl;
+    }
 }
